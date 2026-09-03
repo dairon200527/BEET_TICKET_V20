@@ -1,0 +1,25 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-app);
+  background-image: radial-gradient(circle at 15% 10%, var(--bg-brand-soft) 0%, transparent 45%),
+    radial-gradient(circle at 85% 90%, var(--success-soft) 0%, transparent 40%);
+  padding: 24px;
+}
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: 40px 36px;
+}
+.login-note {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-default);
+  text-align: center;
+}

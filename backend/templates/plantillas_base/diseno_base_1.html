@@ -1,0 +1,127 @@
+<!--
+Diseño Base 1 — "Tarjeta moderna". Parte del código del sistema, NUNCA
+editable por el administrador — ver app/services/plantillas_base.py.
+Variables Jinja2 requeridas: convenio, items, afiliado, transaccion_id,
+fecha_emision, fecha_vencimiento. Variables de contenido opcionales:
+titulo_ticket, subtitulo, descripcion_beneficio, texto_informativo,
+terminos_condiciones, restricciones, instrucciones_redencion,
+logo_base64, logo_cooperativa_base64, qr_base64, barcode_base64.
+-->
+<style>
+    @page { size: A4; margin: 16mm; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #1c2430; }
+    .card { max-width: 620px; margin: 0 auto; border: 1px solid #dde3ea; border-radius: 18px; overflow: hidden; }
+    .header { background: #0f5c4f; color: #ffffff; padding: 28px 32px; text-align: center; }
+    .logos { display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px; min-height: 48px; }
+    .logo { max-height: 48px; max-width: 160px; background: #ffffff; padding: 6px 12px; border-radius: 10px; }
+    .titulo { margin: 0; font-size: 24px; font-weight: 800; }
+    .subtitulo { margin: 6px 0 0; font-size: 13px; color: #cfe9e2; }
+    .beneficio { padding: 22px 32px; background: #f3f8f6; border-bottom: 1px solid #dde3ea; font-size: 16px; font-weight: 700; color: #0f5c4f; text-align: center; }
+    .body { padding: 24px 32px; }
+    .section { margin-bottom: 20px; }
+    .label { font-size: 10px; text-transform: uppercase; letter-spacing: .6px; color: #6b7684; font-weight: 700; margin-bottom: 4px; }
+    .value { font-size: 14px; font-weight: 600; }
+    .grid2 { display: table; width: 100%; }
+    .grid2 .col { display: table-cell; width: 50%; vertical-align: top; padding-right: 10px; }
+    table.items { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 6px; }
+    table.items th { background: #0f5c4f; color: #fff; padding: 8px; text-align: left; font-size: 10px; text-transform: uppercase; }
+    table.items td { padding: 8px; border-bottom: 1px solid #e4e9ee; }
+    .text-block { font-size: 12px; line-height: 1.6; color: #4a5361; background: #f7f9fb; border-radius: 10px; padding: 14px 16px; }
+    .security { text-align: center; padding: 24px; border-top: 2px dashed #cfd8e0; }
+    .qr { width: 130px; height: 130px; }
+    .barcode { max-width: 320px; height: 64px; margin-top: 12px; }
+    .footer { text-align: center; font-size: 10px; color: #8b95a3; padding: 14px; background: #f7f9fb; }
+</style>
+
+<div class="card">
+    <div class="header">
+        <div class="logos">
+            {% if logo_base64 %}<img class="logo" src="data:image/png;base64,{{ logo_base64 }}" alt="Logo del convenio">{% endif %}
+            {% if logo_cooperativa_base64 %}<img class="logo" src="data:image/png;base64,{{ logo_cooperativa_base64 }}" alt="Logo de la cooperativa">{% endif %}
+        </div>
+        <h1 class="titulo">{{ titulo_ticket }}</h1>
+        {% if subtitulo %}<p class="subtitulo">{{ subtitulo }}</p>{% endif %}
+    </div>
+
+    <div class="beneficio">{{ descripcion_beneficio }}</div>
+
+    <div class="body">
+        <div class="section grid2">
+            <div class="col">
+                <div class="label">Afiliado</div>
+                <div class="value">{{ afiliado.nombres }} {{ afiliado.apellidos }}</div>
+            </div>
+            <div class="col">
+                <div class="label">Documento</div>
+                <div class="value">{{ afiliado.documento }}</div>
+            </div>
+        </div>
+
+        <div class="section grid2">
+            <div class="col">
+                <div class="label">Fecha de emisión</div>
+                <div class="value">{{ fecha_emision }}</div>
+            </div>
+            <div class="col">
+                <div class="label">Fecha de vencimiento</div>
+                <div class="value">{{ fecha_vencimiento or "Sin vencimiento" }}</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="label">Convenio</div>
+            <div class="value">{{ convenio.nombre }}</div>
+        </div>
+
+        {% if items %}
+        <div class="section">
+            <div class="label">Detalle</div>
+            <table class="items">
+                <thead><tr><th>Código</th><th>Estado</th></tr></thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr><td>{{ item.codigo }}</td><td>{{ item.estado }}</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        {% if texto_informativo %}
+        <div class="section">
+            <div class="label">Información importante</div>
+            <div class="text-block">{{ texto_informativo }}</div>
+        </div>
+        {% endif %}
+
+        {% if terminos_condiciones %}
+        <div class="section">
+            <div class="label">Términos y condiciones</div>
+            <div class="text-block">{{ terminos_condiciones }}</div>
+        </div>
+        {% endif %}
+
+        {% if restricciones %}
+        <div class="section">
+            <div class="label">Restricciones</div>
+            <div class="text-block">{{ restricciones }}</div>
+        </div>
+        {% endif %}
+
+        {% if instrucciones_redencion %}
+        <div class="section">
+            <div class="label">Cómo redimir</div>
+            <div class="text-block">{{ instrucciones_redencion }}</div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="security">
+        {% if qr_base64 %}<img class="qr" src="data:image/png;base64,{{ qr_base64 }}" alt="Código QR">{% endif %}
+        {% if barcode_base64 %}<img class="barcode" src="data:image/png;base64,{{ barcode_base64 }}" alt="Código de barras">{% endif %}
+        <div class="label" style="margin-top:10px;">Transacción #{{ transaccion_id }}</div>
+    </div>
+
+    <div class="footer">Documento generado electrónicamente por BEET Ticket.</div>
+</div>

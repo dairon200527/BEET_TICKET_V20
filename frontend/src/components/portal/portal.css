@@ -1,0 +1,139 @@
+/* ============ Shell & header ============ */
+.portal-shell { min-height: 100vh; display: flex; flex-direction: column; background: var(--bg-app); }
+
+.portal-header {
+  position: sticky; top: 0; z-index: 30; background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-default);
+}
+.portal-header-inner {
+  max-width: 1120px; margin: 0 auto; height: 64px; display: flex; align-items: center; gap: 24px; padding: 0 20px;
+}
+.portal-logo { display: flex; align-items: center; flex-shrink: 0; }
+.portal-header-nav { display: none; align-items: center; gap: 6px; flex: 1; }
+.portal-nav-link {
+  padding: 8px 12px; border-radius: 8px; font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none;
+}
+.portal-nav-link:hover { background: var(--bg-app); color: var(--text-primary); text-decoration: none; }
+.portal-nav-link.active { background: var(--brand-soft); color: var(--brand-primary); font-weight: 600; }
+.portal-header-right { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+.portal-cupo-chip {
+  display: none; font-size: 12px; font-weight: 600; color: var(--brand-primary); background: var(--bg-brand-soft);
+  border: 1px solid var(--brand-soft-border); border-radius: 999px; padding: 6px 12px; white-space: nowrap;
+}
+
+.portal-content { flex: 1; max-width: 1120px; width: 100%; margin: 0 auto; padding: 24px 20px 96px; }
+
+/* ============ Bottom nav (mobile) ============ */
+.portal-bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 30; display: flex; background: var(--bg-surface);
+  border-top: 1px solid var(--border-default); padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px));
+}
+.portal-bottom-item {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 2px;
+  color: var(--text-muted); text-decoration: none; font-size: 11px; font-weight: 500; border-radius: 10px;
+}
+.portal-bottom-item svg { stroke: var(--text-muted); }
+.portal-bottom-item.active { color: var(--brand-primary); }
+.portal-bottom-item.active svg { stroke: var(--brand-primary); }
+
+@media (min-width: 860px) {
+  .portal-header-nav { display: flex; }
+  .portal-cupo-chip { display: inline-flex; }
+  .portal-bottom-nav { display: none; }
+  .portal-content { padding-bottom: 48px; }
+}
+
+/* ============ Hero / home ============ */
+.portal-hero {
+  background: linear-gradient(135deg, var(--brand-primary) 0%, #2A36F0 100%);
+  border-radius: var(--radius-xl); padding: 28px; color: #fff; margin-bottom: 20px;
+}
+.portal-hero-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: rgba(255,255,255,0.75); text-transform: uppercase; margin-bottom: 6px; }
+.portal-hero-title { font-size: 24px; font-weight: 600; margin: 0 0 6px; }
+.portal-hero-sub { font-size: 14px; color: rgba(255,255,255,0.82); margin: 0; max-width: 46ch; }
+
+/* ============ Benefit card (catalog) ============ */
+.benefit-card-link { text-decoration: none; color: inherit; display: block; }
+.benefit-card { overflow: hidden; height: 100%; transition: box-shadow 120ms ease, transform 120ms ease; }
+.benefit-card-link:hover .benefit-card { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.benefit-card-image {
+  height: 128px; background: repeating-linear-gradient(135deg, #F3F8FF, #F3F8FF 10px, #E8EFFB 10px, #E8EFFB 20px);
+  display: flex; align-items: flex-end; padding: 10px 14px;
+}
+.benefit-card-image-label {
+  font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); background: var(--bg-surface);
+  border: 1px solid var(--border-default); border-radius: 4px; padding: 3px 8px;
+}
+/* Real convenio branding image (ConvenioImagenMarca) — same box as the
+   placeholder above, just filled with a photo instead of stripes. */
+.benefit-card-image--photo { padding: 0; background: var(--bg-app); }
+.benefit-card-image--photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.benefit-card-body { padding: 16px; }
+.benefit-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+
+/* ============ Stepper ============ */
+/* `min-width: 0` is required alongside `overflow-x: auto` here: a flex
+   item's default min-width is its content's natural size, so without it
+   a 5-step flow (PurchaseFlow: Cantidad/Pago/Checkout/Firma/Ticket) just
+   grows past the viewport on a phone instead of scrolling internally —
+   the box itself gets wider rather than clipping/scrolling its content,
+   dragging the WHOLE page into horizontal scroll (see global.css's note
+   on .detail-grid-2col for the same underlying gotcha). */
+.stepper { display: flex; align-items: flex-start; gap: 0; margin-bottom: 24px; overflow-x: auto; width: 100%; min-width: 0; }
+.stepper-item { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.stepper-dot {
+  width: 26px; height: 26px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600; background: var(--bg-app); border: 1px solid var(--border-default); color: var(--text-muted); flex-shrink: 0;
+}
+.stepper-active .stepper-dot { background: var(--brand-primary); border-color: var(--brand-primary); color: #fff; }
+.stepper-done .stepper-dot { background: var(--accent-green); border-color: var(--accent-green); }
+.stepper-label { font-size: 13px; font-weight: 500; color: var(--text-muted); white-space: nowrap; }
+.stepper-active .stepper-label { color: var(--text-primary); font-weight: 600; }
+.stepper-line { width: 28px; height: 1px; background: var(--border-default); margin: 0 8px; flex-shrink: 0; }
+.stepper-done .stepper-line { background: var(--accent-green); }
+
+/* ============ Signature pad ============ */
+.signature-canvas {
+  width: 100%; height: 180px; border: 1.5px dashed var(--brand-soft-border); background: var(--bg-brand-soft);
+  border-radius: var(--radius-lg); touch-action: none; cursor: crosshair; display: block;
+}
+.signature-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; }
+
+/* ============ Ticket card ============ */
+.ticket-card-link { text-decoration: none; color: inherit; display: block; }
+.ticket-card {
+  position: relative; background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs); overflow: hidden;
+}
+.ticket-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; padding: 16px 18px 12px; }
+.ticket-card-divider { position: relative; height: 1px; background: var(--border-default); margin: 0 18px; }
+.ticket-card-notch {
+  position: absolute; top: 0; width: 16px; height: 16px; border-radius: 999px; background: var(--bg-app);
+  z-index: 2; transform: translateY(calc(-8px + 52px));
+}
+.ticket-card-notch-left { left: -8px; }
+.ticket-card-notch-right { right: -8px; }
+.ticket-card-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; }
+.ticket-code-block { display: flex; align-items: center; gap: 14px; }
+.ticket-code-text { font-size: 15px; letter-spacing: 0.03em; }
+.ticket-qr-placeholder {
+  width: 56px; height: 56px; border: 1px solid var(--border-default); border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; background: var(--bg-app);
+}
+.ticket-barcode-placeholder { display: flex; align-items: center; gap: 1.5px; height: 40px; flex-shrink: 0; }
+.ticket-barcode-placeholder span { background: var(--text-primary); height: 100%; display: inline-block; }
+.ticket-meta { display: flex; gap: 24px; }
+.ticket-warning { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--warning); }
+.ticket-card-footer { padding: 10px 18px 16px; display: flex; justify-content: flex-end; }
+
+/* ============ Documents / lists ============ */
+.portal-list-card { display: flex; flex-direction: column; gap: 12px; }
+.portal-doc-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px 16px;
+  border: 1px solid var(--border-default); border-radius: var(--radius-md); background: var(--bg-surface);
+}
+
+@media (max-width: 640px) {
+  .portal-hero { padding: 22px; }
+  .ticket-meta { gap: 16px; }
+}

@@ -1,0 +1,75 @@
+/*
+  BEET Ticket — design tokens
+  Source: project/Sistema de Diseño BEET Ticket.dc.html (Fase 1)
+*/
+:root {
+  /* Nivel 1 — fondos */
+  --bg-app: #F5F7FA;
+  --bg-surface: #FFFFFF;
+  --bg-brand-soft: #F3F8FF;
+
+  /* Nivel 2/3 — bordes y texto */
+  --border-default: #E5E7EB;
+  --text-muted: #6B7280;
+  --text-primary: #1F2937;
+  --text-disabled: #9CA3AF;
+
+  /* Nivel 4 — marca e interacción */
+  --brand-primary: #1C26E5;
+  --brand-primary-hover: #151DB8;
+  --brand-soft: #EEF0FE;
+  --brand-soft-border: #D6DAFB;
+
+  /* Nivel 5 — éxito, beneficio, ahorro (verde: solo relleno/icono, nunca texto) */
+  --accent-green: #37E795;
+  --success-text: #46AC8B;
+  --success-soft: #E8FBF1;
+  --success-soft-border: #CFF0DF;
+
+  /* Semánticos */
+  --error: #D92D20;
+  --error-hover: #B42318;
+  --error-soft: #FEF3F2;
+  --error-soft-border: #FBD5D2;
+  --warning: #B54708;
+  --warning-soft: #FFFAEB;
+  --warning-soft-border: #FDE3B3;
+  --neutral-inactive: #6B7280;
+
+  /* Superficies oscuras (toasts) */
+  --dark-surface: #1F2937;
+  --dark-text-secondary: #D1D5DB;
+  --dark-error-icon: #FCA5A1;
+
+  /* Tipografía */
+  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  /* Espaciado — escala base 4px */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-3xl: 48px;
+  --space-4xl: 64px;
+
+  /* Radios */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 999px;
+
+  /* Sombras */
+  --shadow-xs: 0 1px 2px rgba(16,24,40,0.05);
+  --shadow-md: 0 4px 8px -2px rgba(16,24,40,0.07), 0 2px 4px -2px rgba(16,24,40,0.04);
+  --shadow-lg: 0 16px 32px -12px rgba(16,24,40,0.16);
+  --shadow-toast: 0 16px 32px -12px rgba(16,24,40,0.24);
+
+  /* Foco */
+  --focus-ring: 0 0 0 3px rgba(28,38,229,0.14);
+  --focus-ring-strong: 0 0 0 3px rgba(28,38,229,0.24);
+  --focus-ring-error: 0 0 0 3px rgba(217,45,32,0.10);
+}
