@@ -14,7 +14,7 @@ export default function Landing() {
   return (
     <div className="login-page">
       <div className="login-card">
-        <img src={logo} alt="BEET Ticket" height={52} style={{ marginBottom: 28 }} />
+        <img src={logo} alt="BEET Ticket" height={72} style={{ marginBottom:38, alignItems: 'center' }} />
         <h1 className="text-h2" style={{ margin: '0 0 6px' }}>Bienvenido a BEET Ticket</h1>
         <p className="text-small" style={{ margin: '0 0 26px' }}>
           Elige cómo quieres ingresar a la plataforma de {nombreEntidad}.

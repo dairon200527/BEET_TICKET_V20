@@ -7,7 +7,7 @@ export default function NotFound() {
   return (
     <EmptyState
       icon={<IconAlertas color="var(--text-muted)" />}
-      title="Página no encontrada"
+      title="Página no encontrada :'("
       description="La sección que buscas no existe o fue movida."
       actionLabel="Volver al dashboard"
       onAction={() => navigate('/')}
