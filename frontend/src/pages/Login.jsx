@@ -53,7 +53,7 @@ export default function Login() {
           <Field label="Correo electrónico">
             <Input
               type="email"
-              placeholder="nombre@cooperativaejemplo.com"
+              placeholder="ejemplo@gmail.com"
               value={correo}
               onChange={(e) => setCorreo(e.target.value)}
               required
@@ -62,7 +62,7 @@ export default function Login() {
           <Field label="Contraseña">
             <Input
               type="password"
-              placeholder="••••••••"
+              placeholder="•••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

@@ -30,7 +30,7 @@ export default function Landing() {
         </div>
 
         <div className="login-note text-caption">
-          ¿Primera vez como afiliado? <a href="#" onClick={(e) => { e.preventDefault(); navigate('/portal/registro'); }} style={{ fontWeight: 600 }}>Crea tu cuenta</a>.
+          ¿Primera vez como afiliado? <a href="#" onClick={(e) => { e.preventDefault(); navigate('/portal/registro'); }} style={{ fontWeight: 600 }}>Activa tu cuenta</a>.
         </div>
       </div>
     </div>
